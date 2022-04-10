@@ -1,0 +1,40 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../mixin/font-noto";
+@use "../mixin/font-noto" as fn;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+html {
+  visibility: hidden;
+  &.wf-active {
+    visibility: visible;
+  }
+    font-size: 0.78125vw;
+    @include madia.deviceBreakPointMax(600px) {
+      font-size: 1.66667vw;
+    }
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+body {
+  font-family: noto-sans-cjk-jp, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #2C2C2C;
+}
+
+.consultation {
+  color: var.$colorWhite;
+}
+
+.wrapper {
+  overflow: hidden;
+}

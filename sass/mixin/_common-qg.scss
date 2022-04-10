@@ -1,0 +1,28 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+@mixin common-question-and-greeting {
+  .common-question-and-greeting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &__title {
+      font-size: 4.8rem;
+      color: var.$colorBlack;
+    }
+    &__logo {
+      width: vp.convertVw(148px, 1280px);
+      height: vp.convertVh(135px, 1280px);
+      margin-top: vp.convertVw(21px, 1280px);
+      @include madia.deviceBreakPointMax(600px) {
+      width: vp.convertVw(136px, 600px);
+      height: vp.convertVh(125px, 600px);
+      }
+    }
+  }
+}

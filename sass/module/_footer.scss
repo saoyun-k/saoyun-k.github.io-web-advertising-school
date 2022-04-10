@@ -1,0 +1,6 @@
+@forward "../mixin/common-ct";
+@use "../mixin/common-ct" as ct;
+
+.contacts {
+  @include ct.common-contacts;
+}

@@ -1,0 +1,82 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+@forward  "../mixin/site-padding";
+@use "../mixin/site-padding" as sp;
+
+@mixin common-contacts {
+  &.contacts {
+    @include sp.sitePaddingBase(53px, 0px, 53px, 0px);
+    background-color: var.$colorLightPurple;
+    @include madia.deviceBreakPointMax(600px) {
+      @include sp.sitePaddingSp(85px, 0px, 85px, 0px);
+      }
+  }
+  .common-contacts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: vp.convertVw(1025px, 1280px);
+    margin: 0 auto;
+    @include sp.sitePaddingBase(53px, 80px, 53px, 80px);
+    border-radius: vp.convertVw(15px, 1280px);
+    background-color: var.$colorWhite;
+    @include madia.deviceBreakPointMax(600px) {
+      justify-content: center;
+      flex-wrap: wrap;
+      @include sp.sitePaddingSp(54px, 0px, 61px, 0px);
+      border-radius: vp.convertVw(32px, 1280px);
+      }
+    &__list.ct-info {
+      text-align: center;
+      line-height: 1.8em;
+      font-size: 2.8rem;
+      @include madia.deviceBreakPointMax(600px) {
+        line-height: 1.2em;
+        font-size: 3.2rem;
+        }
+      &__list-item:nth-of-type(1) {
+        margin-bottom: vp.convertVw(17px, 1280px);
+      }
+    }
+    &__list.ct-consultation {
+      .common-contacts__list-item {
+        width: vp.convertVw(409px, 1280px);
+        height: vp.convertVh(101px, 1280px);
+        font-size: 2.8rem;
+        cursor: pointer;
+        @include madia.deviceBreakPointMax(600px) {
+          width: vp.convertVw(440px, 600px);
+          height: vp.convertVh(101px, 600px);
+          margin-top: vp.convertVw(34px, 600px);
+          font-size: 3.2rem;
+          }
+          .ct-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 100vw;
+            background: linear-gradient(to right, #E66969 0%, #1352D8 25%, #E66969 75%, #1352D8 100%);
+            background-size: 400%;
+            transition: .3s;
+            @include madia.deviceBreakPointMax(600px) {
+              width: 100%;
+              height: 100%;
+              }
+            &:hover {
+              background-position: right center;
+            }
+          }
+          &__text {
+            color: var.$colorWhite;
+          }
+        }
+    }
+  }
+}

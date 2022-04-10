@@ -1,0 +1,176 @@
+@forward "../../config/variables";
+@use "../../config/variables" as var;
+@forward  "../../function/convert-vp";
+@use "../../function/convert-vp" as vp;
+@forward  "../../mixin/font-noto";
+@use "../../mixin/font-noto" as fn;
+@forward "../../mixin/madia";
+@use "../../mixin/madia";
+@forward  "../../mixin/site-padding";
+@use "../../mixin/site-padding" as sp;
+
+.guidance {
+  @include sp.sitePaddingBase(200px, 0px, 103px, 0px);
+  background-color: var.$colorLightPurple;
+  &__container {
+    max-width: vp.convertVw(1025px, 1280px);
+    margin: 0 auto;
+    @include madia.deviceBreakPointMax(600px) {
+      max-width: none;
+    }
+  }
+}
+.guidance__content:nth-of-type(1) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .guidance__content__title {
+    position: relative;
+    font-size: 3.8rem;
+    @include fn.fontNotoBold;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: vp.convertVw(6px, 1280px);
+      height: vp.convertVh(69px, 1280px);
+      background-color: var.$colorWhite;
+      border-radius: 100vw;
+      transform: translate(-600%, -20%) rotate(-30deg);
+      @include madia.deviceBreakPointMax(600px) {
+        display: none;
+      }
+    } 
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: vp.convertVw(6px, 1280px);
+      height: vp.convertVh(69px, 1280px);
+      background-color: var.$colorWhite;
+      border-radius: 100vw;
+      transform: translate(600%, -20%) rotate(35deg);
+      @include madia.deviceBreakPointMax(600px) {
+        display: none;
+      }
+    } 
+    @include madia.deviceBreakPointMax(600px) {
+      font-size: 1.9rem;
+    }
+  }
+  .guidance__content__logo {
+    display: flex;
+    align-items: center;
+    width: vp.convertVw(294px, 1280px);
+    height: vp.convertVh(140px, 1280px);
+    margin-top: vp.convertVw(55px, 1280px);
+    @include madia.deviceBreakPointMax(600px) {
+      width: vp.convertVw(376px, 600px);
+      height: vp.convertVh(179px, 600px);
+    }
+  }
+  .guidance__content__text {
+    margin-top: vp.convertVw(23px, 1280px);
+    font-size: 1.6rem;
+    color: #080808;
+    @include madia.deviceBreakPointMax(600px) {
+      margin-top: 0;
+      font-size: 2.6rem;
+    }
+  }
+}
+.guidance__content:nth-of-type(2) {
+  margin: vp.convertVw(68px, 1280px) vp.convertVw(196px, 1280px) 0 vp.convertVw(196px, 1280px);
+  text-align: center;
+  line-height: 2em;
+  background-color: var.$colorWhite;
+  border-radius: 100vw;
+  font-size: 2.8rem;
+  @include fn.fontNotoBold;
+  color: var.$colorBlue;
+  @include madia.deviceBreakPointMax(600px) {
+    margin: vp.convertVw(59px, 600px) vp.convertVw(80px, 600px) 0;
+    line-height: 3em;
+    font-size: 2.6rem;
+  }
+  .guidance__content__text.g-pc {
+    display: block;
+    @include madia.deviceBreakPointMax(600px) {
+      display: none;
+    }
+  }
+  .guidance__content__text.g-sp {
+    display: none;
+    @include madia.deviceBreakPointMax(600px) {
+      display: block;
+    }
+  }
+}
+.guidance__content:nth-of-type(3) {
+  margin-top: vp.convertVw(45px, 1280px);
+  @include madia.deviceBreakPointMax(600px) {
+    margin: vp.convertVw(46px, 600px) vp.convertVw(32px, 600px) 0;
+  }
+  .guidance__content__text {
+    line-height: 1.9em;
+    font-size: 2.4rem;
+    @include madia.deviceBreakPointMax(600px) {
+      font-size: 2.0rem;
+    }
+    .br-sp {
+      display: none;
+      @include madia.deviceBreakPointMax(600px) {
+        display: block;
+      }
+    }
+  }
+}
+.guidance__content:nth-of-type(4) {
+  margin-top: vp.convertVw(23px, 1280px);
+  @include madia.deviceBreakPointMax(600px) {
+    margin-top: vp.convertVw(32px, 600px);
+  }
+  .guidance__content__lists {
+    display: flex;
+    justify-content: space-between;
+    @include madia.deviceBreakPointMax(600px) {
+      justify-content: center;
+    }
+    &-item {
+      position: relative;
+      width: vp.convertPercent(488px, 1025px);
+      padding-bottom: vp.convertPercent(313px, 1025px);
+      background-color: var.$colorWhite;
+      border: solid 1px var.$colorGray;
+      @include madia.deviceBreakPointMax(600px) {
+        width: vp.convertVw(536px, 600px);
+        padding-bottom: vp.convertVw(344px, 600px);
+      }
+      &.g-right {
+        @include madia.deviceBreakPointMax(600px) {
+          display: none;
+          }
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%; 
+        left: 50%;
+        background-image: url(../images/playButton.svg);
+        background-size: cover;
+        width: vp.convertVw(54px, 1280px);
+        height: vp.convertVh(65px, 1280px);
+        transform: translate(-50%,-50%);
+        @include madia.deviceBreakPointMax(600px) {
+          width: vp.convertVw(59px, 600px);
+          height: vp.convertVh(51px, 600px);
+          background-size: contain;
+          background-repeat: no-repeat;
+          }
+      }
+    }
+  }
+}

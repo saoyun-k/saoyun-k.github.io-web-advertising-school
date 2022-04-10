@@ -1,0 +1,49 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward "../mixin/common-qg";
+@use "../mixin/common-qg" as qg;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+@forward  "../mixin/site-padding";
+@use "../mixin/site-padding" as sp;
+
+.greeting__container {
+  max-width: vp.convertVw(1025px, 1280px);
+  margin: 0 auto;
+  @include sp.sitePaddingBase(145px, 0px, 289px, 0px);
+}
+
+.greeting__contents {
+  @include qg.common-question-and-greeting;
+}
+
+.greeting__contents:nth-of-type(2) {
+  display: flex;
+  justify-content: space-evenly;
+  .greeting__content {
+    margin-top: vp.convertVw(72px, 1280px);
+    &.g-img {
+      width: vp.convertVw(288px, 1280px);
+      height: vp.convertVh(376px, 1280px);
+      @include madia.deviceBreakPointMax(600px) {
+      display: none;
+      }
+    }
+    &.g-tex {
+      width: vp.convertPercent(420px, 1025px);
+      @include madia.deviceBreakPointMax(600px) {
+        width: auto;
+        }
+    }
+    &__text {
+      line-height: 1.2em;
+      font-size: 2.0rem;
+      color: var.$colorGray;
+      @include madia.deviceBreakPointMax(600px) {
+        font-size: 3.2rem;
+        }
+    }
+  }
+}

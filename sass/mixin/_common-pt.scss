@@ -1,0 +1,97 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward  "../mixin/font-noto";
+@use "../mixin/font-noto" as fn;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+@mixin common-point {
+  .common-point {
+    display: flex;
+    max-width: vp.convertVw(1025px, 1280px);
+    margin: 0 auto;
+    @include madia.deviceBreakPointMax(600px) {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .common-point__content:nth-of-type(1) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: vp.convertVw(185px, 1280px);
+      height: vp.convertVh(185px, 1280px);
+      color: var.$colorWhite;
+      background-color: var.$colorBlue;
+      border-radius: 100%;
+      font-family: DIN Alternate;
+      @include madia.deviceBreakPointMax(600px) {
+        min-width: vp.convertVw(296px, 600px);
+        min-height: vp.convertVh(296px, 600px);
+      }
+      .point {
+        font-size: 3.0rem;
+        @include madia.deviceBreakPointMax(600px) {
+          font-size: 4.8rem;
+        }
+      }
+      .number {
+        font-size: 7.0rem;
+        @include madia.deviceBreakPointMax(600px) {
+          font-size: 12rem;
+        }
+      }
+    }
+    .common-point__content:nth-of-type(2) {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: vp.convertVw(629px, 1280px);
+      margin-left: vp.convertVw(22px, 1280px);
+      line-height: 1.2;
+      @include madia.deviceBreakPointMax(600px) {
+        width: auto;
+        margin-top: vp.convertVw(43px, 600px);
+        margin-left: 0;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-image: url(../images/line.svg);
+        min-width: vp.convertVw(335px, 1280px);
+        min-height: vp.convertVh(38px, 1280px);
+        width: vp.convertVw(629px, 1280px);
+        height: vp.convertVh(38px, 1280px);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        transform: translateY(33%);
+        @include madia.deviceBreakPointMax(600px) {
+          width: 100%;
+          height: vp.convertVh(61px, 600px);
+          transform: translateY(150%);
+        }
+      }
+      .common-point__title {
+        font-size: 4.8rem;
+        @include fn.fontNotoBold;
+        @include madia.deviceBreakPointMax(600px) {
+          text-align: center;
+          font-size: 5.1rem;
+        }
+      }
+      .common-point__text {
+        margin-top: vp.convertVw(15px, 1280px);
+        font-size: 2.0rem;
+        @include madia.deviceBreakPointMax(600px) {
+          margin-top: vp.convertVw(34px, 600px);
+          font-size: 2.6rem;
+        }
+      }
+    }
+  }
+}

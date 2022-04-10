@@ -1,0 +1,117 @@
+@forward "../../config/variables";
+@use "../../config/variables" as var;
+@forward  "../../function/convert-vp";
+@use "../../function/convert-vp" as vp;
+@forward  "../../mixin/font-noto";
+@use "../../mixin/font-noto" as fn;
+@forward "../../mixin/madia";
+@use "../../mixin/madia";
+@forward  "../../mixin/site-padding";
+@use "../../mixin/site-padding" as sp;
+
+.worries {
+  background-image: linear-gradient(0deg, transparent vp.convertVw(31px, 1280px), #707070 vp.convertVw(32px, 1280px)), linear-gradient(90deg, transparent vp.convertVw(31px, 1280px), rgba(112, 112, 112, .33) vp.convertVw(32px, 1280px));
+  background-size: vp.convertVw(32px, 1280px) vp.convertVw(32px, 1280px);
+}
+
+.worries__content {
+  max-width: vp.convertVw(1025px, 1280px);
+  margin:  0 auto;
+  &:nth-of-type(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: none;
+    
+  }
+  &__text {
+    @include fn.fontNotoBold;
+    &:nth-of-type(1) {
+      text-align: center;
+      padding-top: vp.convertVw(166px, 1280px);
+      line-height: 1.5em;
+      font-size: 4.8rem;
+      @include madia.deviceBreakPointMax(600px) {
+        font-size: 3.2rem;
+      }
+    }
+    &:nth-of-type(2) {
+      text-align: center;
+      width: vp.convertVh(631px, 1280px);
+      margin-top: vp.convertVw(31px, 1280px);
+      line-height: 2.0em;
+      font-size: 2.8rem;
+      color: var.$colorBlue;
+      background-color: var.$colorWhite;
+      border: solid 1px var.$colorGray;
+      border-radius: 100vw;
+      @include madia.deviceBreakPointMax(600px) {
+        width: vp.convertVh(442px, 600px);
+        line-height: 3em;
+        font-size: 2.6rem;
+      }
+    }
+  }
+  &:nth-of-type(2) {
+    display: flex;
+    justify-content: center;
+    margin-top: vp.convertVw(73px, 1280px);
+  }
+  &__lists {
+    font-size: 2.4rem;
+    @include madia.deviceBreakPointMax(600px) {
+      font-size: 1.6rem;
+    }
+    &-item {
+      position: relative;
+      margin-bottom: vp.convertVw(46px, 1280px);
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url(../images/thunder.svg);
+        background-size: cover;
+        width: vp.convertVw(49px, 1280px);
+        height: vp.convertVh(39px, 1280px);
+        background-repeat: no-repeat;
+        transform: translate(-100%, -25%);
+      }
+    }
+  }
+  &:nth-of-type(3) {
+    position: relative;
+    margin-top: vp.convertVw(82px, 1280px);
+    @include madia.deviceBreakPointMax(600px) {
+      max-width: none;
+    }
+  }
+  &-title {
+    text-align: center;
+    padding-bottom: vp.convertVw(50px, 1280px);
+    line-height: 1.5em;
+    font-size: 4.8rem;
+    @include fn.fontNotoBold;
+    @include madia.deviceBreakPointMax(600px) {
+      max-width: none;
+      padding-bottom: vp.convertVw(112px, 600px);
+      font-size: 6.1rem;
+    }
+  }
+  .worries__border {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%; 
+    height: 0;
+    border-top: vp.convertVw(100px, 1280px) solid rgba(0, 0, 0, 0);
+    border-right: vp.convertVw(640px, 1280px) solid var.$colorLightPurple;
+    border-left: vp.convertVw(640px, 1280px) solid var.$colorLightPurple;
+    transform: translate(-10%, 0);
+    @include madia.deviceBreakPointMax(600px) {
+      transform: translate(0%, 0);
+    }
+  }
+}

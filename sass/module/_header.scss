@@ -1,0 +1,125 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward  "../mixin/site-padding";
+@use "../mixin/site-padding" as sp;
+@forward  "../mixin/font-noto";
+@use "../mixin/font-noto" as fn;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: vp.convertVw(24px, 1280px) vp.convertVw(39px, 1280px) 0;
+}
+
+.header__logo {
+  &-sub {
+    font-size: 1.4rem;
+    font-family: "メイリオ", "游ゴシック体";
+    color: var.$colorGray;
+    @include madia.deviceBreakPointMax(600px) {
+      display: none;
+    }
+  }
+  &__content {
+    margin-top: vp.convertVw(11px, 1280px);
+    @include sp.sitePaddingBase(18px, 56px, 18px, 56px);
+    border: solid 1px var.$colorGray;
+      @include madia.deviceBreakPointMax(600px) {
+        border: none;
+      }
+    &-title {
+      max-width: vp.convertVw(70px, 1280px);
+      margin: 0 auto;
+      @include madia.deviceBreakPointMax(600px) {
+        max-width: none;
+        width: vp.convertVw(112px, 600px);
+      }
+    }
+  }
+}
+
+.logo-memu {
+  max-width: vp.convertVw( 173px, 1280px);
+  max-height: vp.convertVh(71px, 1280px);
+  min-width: 94px;
+  min-height: 44px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  @include madia.deviceBreakPointMax(600px) {
+    max-width: none;
+    max-height: none;
+  }
+  .c-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: vp.convertVw(173px, 1280px);
+    height: vp.convertVh(71px, 1280px);
+    border-radius: 100vw;
+    background: linear-gradient(to right, #E66969 0%, #1352D8 25%, #E66969 75%, #1352D8 100%);
+    background-size: 400%;
+    transition: .3s;
+    @include madia.deviceBreakPointMax(600px) {
+      width: vp.convertVw(150px, 600px);
+      height: vp.convertVh(70px, 600px);
+    }
+    &:hover {
+      background-position: right center;
+    }
+  }
+  
+  
+  .consultation {
+    @include fn.fontNotoBold;
+    @include madia.deviceBreakPointMax(600px) {
+      display: none;
+    }
+  }
+    .mail {
+      position: relative;
+      display: inline-block;
+      width: vp.convertVw(23px, 1280px);
+      height: vp.convertVh(17px, 1280px);
+      min-width: 20px;
+      min-height: 14px;
+      margin-left: 7px;
+      background: var.$colorWhite;
+      border: solid 1px var.$colorBlack;
+      @include madia.deviceBreakPointMax(600px) {
+        display: block;
+        width: vp.convertVw(37px, 600px);
+        height: vp.convertVh(27px, 600px);
+        margin-left: 0;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 14px;
+        height: 14px;
+        border: 0px;
+        border-top: solid 1px var.$colorBlack;
+        border-right: solid 1px var.$colorBlack;
+        transform: translate(-16%, -50%) rotate(135deg);
+        @include madia.deviceBreakPointMax(600px) {
+          width: vp.convertVw(26px, 600px);
+          height: vp.convertVh(26px, 600px);
+        }
+        @include madia.deviceBreakPointMin(1140px) {
+          width: vp.convertVw(16px, 1280px);
+          height: vp.convertVh(16px, 1280px);
+        }
+      }
+    }
+}
+

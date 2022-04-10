@@ -1,0 +1,182 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward "../mixin/common-ct";
+@use "../mixin/common-ct" as ct;
+@forward "../mixin/common-pt";
+@use "../mixin/common-pt" as pt;
+@forward  "../mixin/font-noto";
+@use "../mixin/font-noto" as fn;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+@forward  "../mixin/site-padding";
+@use "../mixin/site-padding" as sp;
+
+$bgi-numbers: 1, 2, 3, 4;
+
+.feature {
+  @include sp.sitePaddingBase(156px, 0px, 152px, 0px); 
+  background-image: linear-gradient(to right, var.$colorLightPurple, var.$colorLightPurple vp.convertVw(13px, 1280px), transparent 2px, transparent 6px);
+	background-size: vp.convertVw(25px, 1280px) vp.convertVw(13px, 1280px);
+	background-repeat: repeat-x;
+	background-position: left top;
+}
+
+.feature__container {
+  max-width: vp.convertVw(1025px, 1280px);
+  margin: 0 auto;
+  @include madia.deviceBreakPointMax(600px) {
+    max-width: none;  
+  }
+  @include pt.common-point();
+  .feature__content.f-intro {
+    @include sp.sitePaddingBase(113px, 97px, 0px, 97px); 
+    @include madia.deviceBreakPointMax(600px) {
+      @include sp.sitePaddingSp(92px, 32px, 0px, 32px); 
+    }
+    .feature__content__title {
+      position: relative;
+      line-height: 1.2em;
+      font-size: 3.2rem;
+      @include fn.fontNotoBold;
+      color: var.$colorBlack;
+      white-space: nowrap;
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: vp.convertVh(10px, 1280px);
+        background-image: linear-gradient(to right, #E66969, #E66969 13px, transparent 2px, transparent 6px);
+        background-size: 25px 13px;
+        background-repeat: repeat-x;
+        background-position: left bottom;
+        transform: translateY(250%);
+      }
+      @include madia.deviceBreakPointMax(600px) {
+        line-height: 1.6em;
+        font-size: 3.2rem;
+      }
+      .br-sp {
+        display: none;
+        @include madia.deviceBreakPointMax(600px) {
+          display: block;
+        }
+      }
+    }
+    .feature__content__text {
+      margin-top: vp.convertVw(52px, 1280px);
+      font-size: 2.0rem;
+      @include madia.deviceBreakPointMax(600px) {
+        font-size: 1.9rem;
+      }
+    }
+  }
+}
+
+.feature__contents {
+  &.f-logo {
+    margin: vp.convertVw(52px, 1280px) 0 vp.convertVw(58px, 1280px) 0;
+    .feature__content {
+      padding: 0;
+      .feature__content__item {
+        display: flex;
+        align-items: center;
+        width: vp.convertVw(294px, 1280px);
+        height: vp.convertVh(140px, 1280px);
+        margin: 0 auto;
+        @include madia.deviceBreakPointMax(600px) {
+          width: vp.convertVw(376px, 600px);
+          height: vp.convertVh(179px, 600px);
+        }
+      }
+    }
+  }
+  &.f-feature {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @include madia.deviceBreakPointMax(600px) {
+      justify-content: center;
+    }
+    &.mar {
+      margin: vp.convertVw(91px, 1280px) 0 vp.convertVw(152px, 1280px) 0;
+    }
+    .feature__content {
+      width: vp.convertPercent(454px, 1025px);
+      @include madia.deviceBreakPointMax(600px) {
+        width: vp.convertVw(526px, 600px);
+        margin-top: vp.convertVw(139px, 600px);
+      }
+
+      @each $bgi-number in $bgi-numbers {
+
+        .feature__content__items {
+          .feature__content__items-item {
+            &__title#{$bgi-number} {
+              position: relative;
+              text-align: center;
+              padding: vp.convertVw(12px, 1280px) 0;
+              font-size: 2.8rem;
+              @include fn.fontNotoBold;
+              color: var.$colorWhite;
+              background-color: var.$colorBlue;
+              @include madia.deviceBreakPointMax(600px) {
+                padding: vp.convertVw(24px, 600px) 0;
+                font-size: 3.5rem;
+              }
+              &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: vp.convertVw(59px, 1280px);
+                height: vp.convertVh(56px, 1280px);
+
+                background-image: url(../images/fukidasi#{$bgi-number}.svg);
+
+                background-size: cover;
+                background-repeat: no-repeat;
+                transform: translateY(-70%);
+                @include madia.deviceBreakPointMax(600px) {
+                  width: vp.convertVw(96px, 600px);
+                  height: vp.convertVh(91px, 600px);
+                }
+              }
+              
+              &::after {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                left: 0;
+                width: vp.convertVw(454px, 1280px);
+                height: vp.convertVh(51px, 1280px);
+                border: solid 1px #020202;
+                transform: translate(2%, 20%);
+                @include madia.deviceBreakPointMax(600px) {
+                  width: 100%;
+                  height: vp.convertVh(83px, 600px);
+                  transform: translate(2%, 10%);
+                }
+              }
+            }
+            &__text {
+              margin-top: vp.convertVw(44px, 1280px);
+              line-height: 1.7em;
+              font-size: 2.0rem;
+              @include madia.deviceBreakPointMax(600px) {
+                font-size: 2.2rem;
+              }
+            }
+          }
+        }
+     }
+    }
+  }
+}
+.contacts {
+  @include ct.common-contacts;
+}

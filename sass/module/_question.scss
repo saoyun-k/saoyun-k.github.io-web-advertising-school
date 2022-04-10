@@ -1,0 +1,150 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward "../mixin/common-ct";
+@use "../mixin/common-ct" as ct;
+@forward "../mixin/common-pt";
+@use "../mixin/common-pt" as pt;
+@forward "../mixin/common-mt";
+@use "../mixin/common-mt" as mt;
+@forward "../mixin/common-qg";
+@use "../mixin/common-qg" as qg;
+@forward  "../mixin/font-noto";
+@use "../mixin/font-noto" as fn;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+@forward  "../mixin/site-padding";
+@use "../mixin/site-padding" as sp;
+
+.question {
+  background-color: #FAFBFF;
+}
+
+.question__container {
+  max-width: vp.convertVw(1025px, 1280px);
+  margin: 0 auto;
+  @include sp.sitePaddingBase(146px, 0px, 106px, 0px);
+}
+
+.question__contents {
+  @include qg.common-question-and-greeting;
+}
+
+
+.question__content {
+  margin-top: vp.convertVw(93px, 1280px);
+  &__items {
+    font-size: 2.0rem;
+    @include fn.fontNotoBold;
+    &.q-line {
+      border-bottom: dashed 1px var.$colorGray;
+      cursor: pointer;
+    }
+      &-text {
+        @include sp.sitePaddingBase(44px, 0px, 44px, 100px);
+        @include madia.deviceBreakPointMax(600px) {
+          margin-bottom: vp.convertVw(12px, 600px); 
+          padding-left: vp.convertVw(74px, 600px);
+          }
+        &:nth-child(odd) {
+          position: relative;
+          @include madia.deviceBreakPointMax(600px) {
+            margin-top: vp.convertVw(12px, 600px);
+            }
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: vp.convertVw(60px, 1280px);
+            height: vp.convertVh(60px, 1280px);
+            background-image: url(../images/question.svg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            transform: translateY(40%);
+            @include madia.deviceBreakPointMax(600px) {
+              width: vp.convertVw(54px, 600px);
+              height: vp.convertVh(54px, 600px);
+              transform: translate(-25%, 10%);
+              }
+          }
+        }
+        &:nth-child(even) {
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: vp.convertVw(60px, 1280px);
+            height: vp.convertVh(60px, 1280px);
+            background-image: url(../images/answer.svg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            transform: translateY(-50%);
+            transition: .3s;
+            @include madia.deviceBreakPointMax(600px) {
+              width: vp.convertVw(54px, 600px);
+              height: vp.convertVh(54px, 600px);
+              transform: translate(-25%, -25%);
+              transition: .3s;
+              }
+          }
+        }
+      }
+  }
+}
+
+.question__content__items-text.q-ques {
+  position: relative;
+  .q-arrow {
+    &.action::after {
+      transform: translate(-50%, 200%) rotate(-45deg);
+      @include madia.deviceBreakPointMax(600px) {
+        transform: translate(-50%, 220%) rotate(-45deg);
+        }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: vp.convertVw(25px, 1280px);
+      height: vp.convertVh(25px, 1280px);
+      border: 0px;
+      border-top: solid 2px var.$colorBaseBlack;
+      border-right: solid 2px var.$colorBaseBlack;
+      transform: translate(-50%, 135%) rotate(135deg);
+      transition: .5s;
+      @include madia.deviceBreakPointMax(600px) {
+        width: vp.convertVw(13px, 600px);
+        height: vp.convertVh(13px, 600px);
+        }
+    }
+  }
+}
+
+.question__content__items-text.q-ans {
+  height: 0;
+  opacity: 0;
+  @include sp.sitePaddingBase(0px, 0px, 0px, 100px);
+  transition: .3s;
+  @include madia.deviceBreakPointMax(600px) {
+    padding-left: vp.convertVw(74px, 600px);
+    }
+  &.active {
+    height: auto;
+    opacity: 1;
+    @include sp.sitePaddingBase(44px, 0px, 44px, 100px);
+    @include madia.deviceBreakPointMax(600px) {
+      padding-left: vp.convertVw(74px, 600px);
+      }
+    &::before {
+      transform: translateY(40%);
+      @include madia.deviceBreakPointMax(600px) {
+        transform: translate(-25%, 10%);
+        }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward  "../mixin/site-padding";
+@use "../mixin/site-padding" as sp;
+@forward  "../mixin/font-noto";
+@use "../mixin/font-noto" as fn;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+
+.first-view__container {
+  position: relative;
+}
+
+.first-view__contents {
+  width: 100%;
+  height: vp.convertVh(691px, 1280px);
+  background-image: url(../images/topView.svg);
+  background-size: 100%;
+  background-position: 150% 80%;
+  background-repeat: no-repeat;
+  @include madia.deviceBreakPointMax(600px) {
+    height: vp.convertVh(700px, 600px);
+    background-position: vp.convertVw(74px, 600px) 93%;
+  }
+  >.first-view__content {
+    max-width: vp.convertVw(1025px, 1280px);
+    margin: 0 auto;
+    line-height: 1.2em;
+    padding-top: vp.convertVw(218px, 1280px);
+    font-size: 6.0rem;
+    @include fn.fontNotoBold;
+    @include madia.deviceBreakPointMax(600px) {
+      margin: 0;
+      margin-left: vp.convertVw(40px, 600px);
+      padding-top: vp.convertVw(160px, 600px);
+      font-size: 6.1rem;
+     }
+    }
+  &-wrap {
+    display: flex;
+    justify-content: space-between;
+    max-width: vp.convertVw(1025px, 1280px);
+    margin: 0 auto;
+    @include madia.deviceBreakPointMax(600px) {
+      display: block;
+      margin: 0;
+     }
+    .first-view__content {
+      &:nth-of-type(1) {
+        font-size: 2.4rem;
+        @include madia.deviceBreakPointMax(600px) {
+          margin-left: vp.convertVw(40px, 600px);
+          font-size: 1.9rem;
+        }
+      }
+      &-text {
+        line-height: 1.2em;
+        &.pc {
+          @include madia.deviceBreakPointMin(601px) {
+            display: block;
+            margin-top: vp.convertVw(79px, 1280px);
+          }
+          @include madia.deviceBreakPointMax(600px) {
+            display: none;
+          }
+        }
+        &.sp {
+          @include madia.deviceBreakPointMin(601px) {
+            display: none;
+          }
+        }
+        @include madia.deviceBreakPointMax(600px) {
+          display: block;
+          margin-top: vp.convertVw(22px, 600px);
+        }
+      }
+      &-appeal {
+        width: vp.convertVw(590px, 1280px);
+        height: vp.convertVh(222px, 1280px);
+        @include madia.deviceBreakPointMax(600px) {
+          width: vp.convertVw(600px, 600px);
+          height: vp.convertVh(234px, 600px);
+          margin-top: vp.convertVw(40px, 600px);
+        }
+      }
+
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@forward "../../config/variables";
+@use "../../config/variables" as var;
+@forward  "../../function/convert-vp";
+@use "../../function/convert-vp" as vp;
+@forward "../../mixin/common-ct";
+@use "../../mixin/common-ct" as ct;
+@forward  "../../mixin/font-noto";
+@use "../../mixin/font-noto" as fn;
+@forward "../../mixin/madia";
+@use "../../mixin/madia";
+@forward  "../../mixin/site-padding";
+@use "../../mixin/site-padding" as sp;
+
+.is-school__contents {
+  display: flex;
+  @include madia.deviceBreakPointMax(600px) {
+    display: block;
+  }
+  .is-school__content {
+    &.is-s-t {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: vp.convertPercent(757px, 1280px);
+      background-color: var.$colorBlue;
+      @include madia.deviceBreakPointMax(600px) {
+        width: auto;
+        text-align: center;
+      }
+    }
+    &__title {
+      font-size: 4.2rem;
+      @include fn.fontNotoBlack;
+      color: var.$colorWhite;
+      text-shadow: 
+      2px  2px 1px var.$colorBlack,
+      -2px  2px 1px var.$colorBlack,
+      2px -2px 1px var.$colorBlack,
+      -2px -2px 1px var.$colorBlack,
+      2px  0px 1px var.$colorBlack,
+      0px  2px 1px var.$colorBlack,
+      -2px  0px 1px var.$colorBlack,
+      0px -2px 1px var.$colorBlack;
+      @include madia.deviceBreakPointMax(600px) {
+        @include sp.sitePaddingBase(30px, 0px, 42px, 0px);
+        line-height: 1.8em;
+        font-size: 4.5rem;
+      }
+      .br-sp {
+        display: none;
+        @include madia.deviceBreakPointMax(600px) {
+          display: block;
+        }
+      }
+    }
+    &.is-s-l { 
+      width: calc( 100% - 59.140625%);
+      @include sp.sitePaddingBase(8px, 8px, 0px, 8px);
+      background-color: var.$colorBaseBlack;
+      @include madia.deviceBreakPointMax(600px) {
+        width: auto;
+        @include sp.sitePaddingBase(13px, 13px, 13px, 13px);
+      }
+    }
+    &__logo {
+      display: flex;
+      justify-content: center;
+      background-color: var.$colorWhite;
+      &-inner {
+        display: flex;
+        width: vp.convertVw(294px, 1280px);
+        height: vp.convertVh(130px, 1280px);
+        background-color: var.$colorWhite;
+        @include madia.deviceBreakPointMax(600px) {
+          width: vp.convertVw(470px, 600px);
+          height: vp.convertVh(208px, 600px);
+        }
+      }
+    }
+    &__text {
+      @include sp.sitePaddingBase(20px, 62px, 20px, 66px);
+      font-size: 2.0rem;
+      @include fn.fontNotoBold;
+      color: var.$colorWhite;
+      white-space: nowrap;
+      @include madia.deviceBreakPointMax(600px) {
+        @include sp.sitePaddingBase(38px, 48px, 38px, 48px);
+        font-size: 2.6rem;
+      }
+    }
+  }
+}
+.contacts {
+  @include ct.common-contacts;
+}

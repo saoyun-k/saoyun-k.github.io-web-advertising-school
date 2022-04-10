@@ -1,0 +1,50 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+@mixin common-merit {
+  .common-merit__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: vp.convertVw(134px, 1280px);
+    height: vp.convertVh(134px, 1280px);
+    background-color: #E66969;
+    font-family: DIN Alternate;
+    border: solid 4px var.$colorBaseBlack;
+    border-radius: 100%;
+    transform: translate(100%, -50%);
+    @include madia.deviceBreakPointMax(600px) {
+      min-width: vp.convertVw(182px, 600px);
+      min-height: vp.convertVh(182px, 600px);
+      left: auto;
+      right: auto;
+      border: solid vp.convertVw(6px, 600px) var.$colorBaseBlack;
+      transform: translateY(-50%);
+    }
+    .merit {
+      line-height: 1.2em;
+      font-size: 2.0rem;
+      color: #484848;
+      @include madia.deviceBreakPointMax(600px) {
+        font-size: 4.3rem;
+      }
+    }
+    .number {
+      line-height: 1.2em;
+      font-size: 4.8rem;
+      color: #FAFBFF;
+      @include madia.deviceBreakPointMax(600px) {
+        font-size: 6.5rem;
+      }
+    }
+  }
+}
